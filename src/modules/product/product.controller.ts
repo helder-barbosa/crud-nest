@@ -1,4 +1,5 @@
-import { Controller, Get } from '@nestjs/common'
+/* eslint-disable prettier/prettier */
+import { Controller, Get, Param } from '@nestjs/common'
 import { Product } from './product.entity'
 import { ProductService } from './product.service'
 
@@ -8,5 +9,10 @@ export class ProductController {
   @Get()
   async findAll(): Promise<Product[]> {
     return this.productService.findAll()
+  }
+
+  @Get(':id')
+  async findById(@Param('id') id: string ): Promise<Product> {
+    return this.productService.findById(id)
   }
 }
